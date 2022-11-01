@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang ="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dynamic Multiplication Table</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body id="body">
+    <div id="header" class="container-fluid">
+      <h2>Multiplication Table</h2>
+    </div>
+    <div id="maindiv" class="container">
+      <div id="row1" class="row">
+        <div id = "colform" class="col-md-3">
+          <form>
+            <label>Minimum Column Value:</label><br>
+            <input id="minc"><br>
+            <label>Maximum Column Value:</label><br>
+            <input id="maxc"><br>
+            <label>Minimum Row Value:</label><br>
+            <input id="minr"><br>
+            <label>Maximum Row Value:</label><br>
+            <input id="maxr"><br><br>
+            <button id = "button" type="button">Submit</button>
+          </form>
+        </div>
+        <div id = "coltable" class="col-md-9">
+          <table id="table">
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="js/myScript.js"></script>
+  </body>
+</html>
