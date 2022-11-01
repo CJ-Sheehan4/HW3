@@ -1,5 +1,10 @@
 #body {
   background-color: #000C0A;
+  background-image: radial-gradient(#00F35C, #004315, #000C0A);
+  background-repeat: no-repeat;
+  height: 100%;
+  margin: 0;
+  background-attachment: fixed;
   text-align: center;
 }
 #maindiv {
@@ -7,7 +12,7 @@
   margin-top: 50px;
 }
 #header {
-  background-color: #004315;
+  background-color: black;
   color: #00F35C;
   text-align: center;
   border-bottom-style: solid;
@@ -22,14 +27,27 @@
   
 }
 form {
-  color: #00732D;
-  
+  color: #00F35C;
+}
+input {
+  background-color: rgb(3, 55, 3);
+}
+button {
+  background-color: rgb(3, 55, 3);
 }
 #coltable {
-  
-  color: #00732D;
+  color: #00F35C;
 }
-table, th, td {
-  margin: 0px auto;
-  border: solid green;
+table {
+  margin: 50px auto;
+  border: solid #00F35C;
+  width: 100%;
 }
+tr {
+  border: solid #00F35C;
+}
+th, td {
+  border: solid #00F35C;
+  padding: 10px;
+}
+
