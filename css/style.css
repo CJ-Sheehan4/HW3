@@ -35,7 +35,6 @@ input {
 button {
   background-color: rgb(3, 55, 3);
 }
-
 #error {
   color: red;
   font-weight: bold;

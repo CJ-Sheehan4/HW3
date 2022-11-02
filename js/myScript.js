@@ -52,6 +52,7 @@ function getInputValues(){
     }
   }
 }
+// this function validates all the input: ensures only numbers entered, min isnt larger than max, etc.
 function validateInput(){
   var minColElement = document.getElementById("minc");
   var minColVal = checkIfInt(document.getElementById("minc").value);
@@ -61,25 +62,55 @@ function validateInput(){
   var minRowVal = checkIfInt(document.getElementById("minr").value);
   var maxRowElement = document.getElementById("maxr");
   var maxRowVal = checkIfInt(document.getElementById("maxr").value);
+  var errorMsg = document.getElementById("error");
   var input = {minCol: [minColVal, minColElement], 
               maxCol: [maxColVal, maxColElement],
               minRow: [minRowVal, minRowElement],
               maxRow: [maxRowVal, maxRowElement]};
-  for(let i in input){
-    if(input[i][0] == false){
-      var errorMsg = document.getElementById("error");
+  for(let i in input){ // if one of the values returned false, then it outputs the message and returns false
+    if(input[i][0] === false){
       errorMsg.innerHTML = "You have entered something other than a number";
       input[i][1].style.color = "red";
       return false;
     }
+    if(input[i][0] > 50 || input[i][0] < -50){
+      errorMsg.innerHTML = "The value you entered is out of range: -50 <= value <= 50";
+      input[i][1].style.color = "red";
+      return false;
+    }
   }
-  for(let i in input){
+  if(minColVal > maxColVal){
+    errorMsg.innerHTML = "minimum column cannot be larger than the maximum column";
+    input.minCol[1].style.color = "red";
+    input.maxCol[1].style.color = "red";
+    return false;
+  }
+  if(minRowVal > maxRowVal){
+    errorMsg.innerHTML = "minimum row cannot be larger than the maximum row";
+    input.minRow[1].style.color = "red";
+    input.maxRow[1].style.color = "red";
+    return false;
+  }
+  // if it didnt return false, reset all the colors back to normal so they arent all red
+  for(let i in input){ 
     input[i][1].style.color = "#00F35C";
   }
-  
   return {minColVal, maxColVal, minRowVal, maxRowVal};
 }
 function checkIfInt(inputNum){
+  var temp = "";
+  if(inputNum[0] == '-'){
+    for(let j = 1; j < (inputNum.length); j++){
+      temp += inputNum[j];
+    }
+    temp = checkIfInt(temp);
+    if(!temp){
+      return false;
+    }
+    else{
+      inputNum = temp - temp - temp;
+    }
+  }
   for(let i = 0; i < inputNum.length; i++) {
     if(isNaN(parseInt(inputNum[i]))){
       return false;
@@ -89,6 +120,8 @@ function checkIfInt(inputNum){
   errorMsg.innerHTML = "";
   return parseInt(inputNum);
 }
+
+/*main*/ 
 getInputValues();
 // When button is clicked, calls the function to populate the table
 document.getElementById("button").addEventListener("click", getInputValues);
