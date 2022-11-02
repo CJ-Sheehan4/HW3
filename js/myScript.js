@@ -133,10 +133,7 @@ function checkIfInt(inputNum){
   errorMsg.innerHTML = "";
   return parseInt(inputNum);
 }
-
 /*main*/ 
 getInputValues();
 // When button is clicked, calls the function to populate the table
 document.getElementById("button").addEventListener("click", getInputValues);
-
-

@@ -31,11 +31,15 @@ button {
   background-color: black;
   font-weight: bold;
 }
+#coltable {
+  overflow-y: scroll;
+  overflow-x: scroll;
+  height: 300px;
+}
 table {
   margin: 50px auto;
   color:#00F35C;
-  width: 80%;
-  overflow-y: auto;
+  width: 100%;
 }
 thead > tr > th:not(th:nth-child(1)) {
   background-color: #006620;
