@@ -17,15 +17,6 @@
   text-align: center;
   border-bottom-style: solid;
 }
-#row1 {
-  color: #00F35C;
-  border-style: solid;
-  
-}
-#colform {
-  border-right-style: solid;
-  
-}
 form {
   color: #00F35C;
 }
@@ -37,26 +28,30 @@ button {
 }
 #error {
   color: red;
+  background-color: black;
   font-weight: bold;
 }
 table {
   margin: 50px auto;
-  border: solid #00F35C;
-  
+  color:#00F35C;
+  width: 80%;
+  overflow-y: auto;
+}
+thead > tr > th:not(th:nth-child(1)) {
+  background-color: #006620;
+  padding: 3px;
   text-align: center;
-  border-collapse: collapse;
-}
-
-tr {
   border: solid #00F35C;
-  
 }
-th {
-  border: solid #00F35C;
+tbody > tr > th {
+  background-color: #006620;
+  padding: 3px;
   text-align: center;
-}
-td {
   border: solid #00F35C;
-  
 }
-
+tbody > tr > td {
+  border: solid #00F35C;
+}
+tr:nth-child(even) {
+  background-color:#001c09;
+}

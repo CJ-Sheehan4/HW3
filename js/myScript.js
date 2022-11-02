@@ -13,19 +13,32 @@ function getInputValues(){
   var newTable = document.createElement("table");
   newTable.id = "table";
   tableParentDiv.appendChild(newTable);
+  var newThead = document.createElement("thead");
   var newTbody = document.createElement("tbody");
+  newTable.appendChild(newThead);
   newTable.appendChild(newTbody);
   var newTr = document.createElement("tr");
-  newTbody.appendChild(newTr);
+  newThead.appendChild(newTr);
   var newTh = document.createElement("th");
   newTr.appendChild(newTh);
   var newTh = document.createElement("th");
   newTr.appendChild(newTh);
+  // adding to tbody
+  // var newTr = document.createElement("tr");
+  // newTbody.appendChild(newTr);
+  // var newTh = document.createElement("th");
+  // newTr.appendChild(newTh);
+  // var newTh = document.createElement("th");
+  // newTr.appendChild(newTh);
   // initialize elements and populate first column header
-  var tbodyElement = document.getElementById("table").firstElementChild;
-  var trCollection = tbodyElement.children;
+  var tHeadtBodyPair = document.getElementById("table").children;
+  var tHead = tHeadtBodyPair[0];
+  var trCollection = tHead.children;
+  console.log(trCollection);
   var tableColHeaders = trCollection[0].children;
+  console.log(tableColHeaders);
   tableColHeaders[1].innerHTML = input.minColVal;
+  console.log(tableColHeaders[1]);
   // populating the top row/column headers
   for(var i = input.minColVal + 1; i <= input.maxColVal; i++) {
     var newTh = document.createElement("th");
@@ -38,8 +51,8 @@ function getInputValues(){
   // and then the inner for-loop populates the rest of that row 
   for(var j = input.minRowVal; j <= input.maxRowVal; j++) {
     var newTr = document.createElement("tr");
-    tbodyElement.appendChild(newTr);
-    var lastTr = tbodyElement.lastElementChild;
+    tHeadtBodyPair[1].appendChild(newTr);
+    var lastTr = tHeadtBodyPair[1].lastElementChild;
     var newTh = document.createElement("th");
     var textNode = document.createTextNode(j);
     newTh.appendChild(textNode);
