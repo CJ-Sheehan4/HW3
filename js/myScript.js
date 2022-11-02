@@ -1,9 +1,9 @@
 function getInputValues(){
-  // get all input from browser and parse into an int data type
-  var minCol = parseInt(document.getElementById("minc").value);
-  var maxCol = parseInt(document.getElementById("maxc").value);
-  var minRow = parseInt(document.getElementById("minr").value);
-  var maxRow = parseInt(document.getElementById("maxr").value);
+  // get all input from user and validate it
+  var input = validateInput();
+  if(!input){
+    return;
+  }
   // remove previous table
   var table = document.getElementById("table");
   table.remove();
@@ -25,9 +25,9 @@ function getInputValues(){
   var tbodyElement = document.getElementById("table").firstElementChild;
   var trCollection = tbodyElement.children;
   var tableColHeaders = trCollection[0].children;
-  tableColHeaders[1].innerHTML = minCol;
+  tableColHeaders[1].innerHTML = input.minColVal;
   // populating the top row/column headers
-  for(var i = minCol + 1; i <= maxCol; i++) {
+  for(var i = input.minColVal + 1; i <= input.maxColVal; i++) {
     var newTh = document.createElement("th");
     var textNode = document.createTextNode(i);
     newTh.appendChild(textNode);
@@ -36,7 +36,7 @@ function getInputValues(){
   //populating each row after the top row
   // this for loop creates a new row element
   // and then the inner for-loop populates the rest of that row 
-  for(var j = minRow; j <= maxRow; j++) {
+  for(var j = input.minRowVal; j <= input.maxRowVal; j++) {
     var newTr = document.createElement("tr");
     tbodyElement.appendChild(newTr);
     var lastTr = tbodyElement.lastElementChild;
@@ -44,7 +44,7 @@ function getInputValues(){
     var textNode = document.createTextNode(j);
     newTh.appendChild(textNode);
     lastTr.appendChild(newTh);
-    for(var x = minCol; x <= maxCol; x++) {
+    for(var x = input.minColVal; x <= input.maxColVal; x++) {
       var newTd = document.createElement("td");
       var textNode = document.createTextNode(x * j);
       newTd.appendChild(textNode);
@@ -52,6 +52,45 @@ function getInputValues(){
     }
   }
 }
+function validateInput(){
+  var minColElement = document.getElementById("minc");
+  var minColVal = checkIfInt(document.getElementById("minc").value);
+  var maxColElement = document.getElementById("maxc");
+  var maxColVal = checkIfInt(document.getElementById("maxc").value);
+  var minRowElement = document.getElementById("minr");
+  var minRowVal = checkIfInt(document.getElementById("minr").value);
+  var maxRowElement = document.getElementById("maxr");
+  var maxRowVal = checkIfInt(document.getElementById("maxr").value);
+  var input = {minCol: [minColVal, minColElement], 
+              maxCol: [maxColVal, maxColElement],
+              minRow: [minRowVal, minRowElement],
+              maxRow: [maxRowVal, maxRowElement]};
+  for(let i in input){
+    if(input[i][0] == false){
+      var errorMsg = document.getElementById("error");
+      errorMsg.innerHTML = "You have entered something other than a number";
+      input[i][1].style.color = "red";
+      return false;
+    }
+  }
+  for(let i in input){
+    input[i][1].style.color = "#00F35C";
+  }
+  
+  return {minColVal, maxColVal, minRowVal, maxRowVal};
+}
+function checkIfInt(inputNum){
+  for(let i = 0; i < inputNum.length; i++) {
+    if(isNaN(parseInt(inputNum[i]))){
+      return false;
+    }
+  }
+  var errorMsg = document.getElementById("error");
+  errorMsg.innerHTML = "";
+  return parseInt(inputNum);
+}
 getInputValues();
 // When button is clicked, calls the function to populate the table
 document.getElementById("button").addEventListener("click", getInputValues);
+
+

@@ -35,19 +35,29 @@ input {
 button {
   background-color: rgb(3, 55, 3);
 }
-#coltable {
-  color: #00F35C;
+
+#error {
+  color: red;
+  font-weight: bold;
 }
 table {
   margin: 50px auto;
   border: solid #00F35C;
-  width: 100%;
+  
+  text-align: center;
+  border-collapse: collapse;
 }
+
 tr {
   border: solid #00F35C;
+  
 }
-th, td {
+th {
   border: solid #00F35C;
-  padding: 10px;
+  text-align: center;
+}
+td {
+  border: solid #00F35C;
+  
 }
 
