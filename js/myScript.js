@@ -1,3 +1,5 @@
+// This function gets the values as input, validates them, 
+// and then creates a tables using JS. 
 function getInputValues(){
   // get all input from user and validate it
   var input = validateInput();
@@ -8,7 +10,6 @@ function getInputValues(){
   var table = document.getElementById("table");
   table.remove();
   // creates new HTML table
-  // structure: div -> table -> tbody -> tr -> th th 
   var tableParentDiv = document.getElementById("coltable");
   var newTable = document.createElement("table");
   newTable.id = "table";
@@ -23,14 +24,6 @@ function getInputValues(){
   newTr.appendChild(newTh);
   var newTh = document.createElement("th");
   newTr.appendChild(newTh);
-  // adding to tbody
-  // var newTr = document.createElement("tr");
-  // newTbody.appendChild(newTr);
-  // var newTh = document.createElement("th");
-  // newTr.appendChild(newTh);
-  // var newTh = document.createElement("th");
-  // newTr.appendChild(newTh);
-  // initialize elements and populate first column header
   var tHeadtBodyPair = document.getElementById("table").children;
   var tHead = tHeadtBodyPair[0];
   var trCollection = tHead.children;
@@ -86,18 +79,21 @@ function validateInput(){
       input[i][1].style.color = "red";
       return false;
     }
+    // checking that input is between -50 and 50
     if(input[i][0] > 50 || input[i][0] < -50){
       errorMsg.innerHTML = "The value you entered is out of range: -50 <= value <= 50";
       input[i][1].style.color = "red";
       return false;
     }
   }
+  // checking that insput of min is less than input of max for columns
   if(minColVal > maxColVal){
     errorMsg.innerHTML = "minimum column cannot be larger than the maximum column";
     input.minCol[1].style.color = "red";
     input.maxCol[1].style.color = "red";
     return false;
   }
+  // checking that insput of min is less than input of max for rows
   if(minRowVal > maxRowVal){
     errorMsg.innerHTML = "minimum row cannot be larger than the maximum row";
     input.minRow[1].style.color = "red";
@@ -110,6 +106,7 @@ function validateInput(){
   }
   return {minColVal, maxColVal, minRowVal, maxRowVal};
 }
+// checks if input was an integer, not characters
 function checkIfInt(inputNum){
   var temp = "";
   if(inputNum[0] == '-'){
